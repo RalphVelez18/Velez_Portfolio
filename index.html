@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ralph Velez - Creative Portfolio</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* --- GOOGLE FONT: PRESS START 2P (PIXEL FONT) --- */
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        /* --- GLOBAL STYLES & ORIGINAL COLOR PALETTE --- */
+        :root {
+            --bg-color: #111827;      /* Dark Blue/Gray Background */
+            --primary-accent: #22d3ee; /* Vibrant Cyan */
+            --text-color: #d1d5db;     /* Light Gray */
+            --heading-color: #ffffff;  /* White */
+            --border-color: rgba(34, 211, 238, 0.5); /* Semi-transparent Cyan */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            font-size: 14px;
+        }
+        
+        img { image-rendering: pixelated; }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        /* --- NAVIGATION BAR --- */
+        .navbar {
+            position: fixed; top: 0; width: 100%; padding: 1.5rem 0; z-index: 1000;
+            background: rgba(17, 24, 39, 0.8); backdrop-filter: blur(5px);
+            border-bottom: 2px solid var(--border-color);
+        }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.2rem; font-weight: 700; color: var(--heading-color); }
+        .logo span { color: var(--primary-accent); }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { text-decoration: none; color: var(--text-color); transition: color 0.3s; }
+        .nav-links a:hover { color: var(--primary-accent); }
+
+        /* --- HERO SECTION --- */
+        .hero { min-height: 100vh; display: flex; align-items: center; text-align: center; }
+        .hero-content h1 { font-size: 2.5rem; color: var(--heading-color); line-height: 1.4; margin-bottom: 1rem; }
+        .hero-content h1 span { color: var(--primary-accent); }
+        .hero-content p { font-size: 0.9rem; max-width: 600px; margin: 0 auto 2rem auto; }
+        .btn {
+            display: inline-block; padding: 15px 30px; border-radius: 0;
+            text-decoration: none; font-family: 'Press Start 2P', cursive;
+            transition: all 0.3s; border: 2px solid var(--primary-accent);
+        }
+        .btn-primary { background: var(--primary-accent); color: var(--bg-color); }
+        .btn-primary:hover { background: var(--bg-color); color: var(--primary-accent); }
+        
+        .social-icons a svg { color: var(--text-color); transition: all 0.3s; }
+        .social-icons a:hover svg { color: var(--primary-accent); transform: translateY(-3px); }
+
+        /* --- GENERAL SECTION STYLES --- */
+        .section { padding: 100px 0; }
+        .section-title { text-align: center; font-size: 2rem; margin-bottom: 4rem; color: var(--heading-color); }
+        .section-title span { color: var(--primary-accent); }
+
+        /* --- ABOUT & SKILLS SECTION --- */
+        .about-content { display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; align-items: center; }
+        .about-image img {
+            width: auto;
+            max-width: 350px; /* Bigger size */
+            height: auto;
+            border-radius: 50%; /* Makes it round */
+            border: 2px solid var(--border-color);
+            display: block;
+            margin: 0 auto;
+            object-fit: cover; /* Prevents stretching */
+            aspect-ratio: 1/1; /* Keeps it a perfect circle */
+        }
+        .skills-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+        .skill-category h3 { color: var(--primary-accent); margin-bottom: 1rem; font-size: 1rem; }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+        .skill-tag { background: #1f2937; border: 2px solid var(--border-color); padding: 0.5rem 1rem; }
+        
+        /* --- EDUCATION & EXPERIENCE SECTIONS --- */
+        .education-grid, .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .education-card, .experience-card {
+            background: transparent;
+            border: 2px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 0; 
+        }
+        .education-card .date, .experience-card .date {
+            font-size: 0.8rem;
+            color: var(--primary-accent);
+            margin-bottom: 0.5rem;
+        }
+        .education-card h3, .experience-card h3 {
+            font-size: 1.1rem;
+            color: var(--heading-color);
+            margin-bottom: 0.5rem;
+        }
+        .education-card p, .experience-card p {
+            font-size: 0.8rem;
+            line-height: 1.6;
+        }
+        .experience-card .description {
+            margin-top: 1rem;
+        }
+
+        /* --- CONTACT SECTION --- */
+        .contact-content { max-width: 700px; margin: 0 auto; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group input, .form-group textarea {
+            width: 100%; padding: 1rem; border: 2px solid var(--border-color);
+            border-radius: 0; background: var(--bg-color);
+            color: var(--heading-color); font-size: 0.9rem;
+            font-family: 'Press Start 2P', cursive;
+        }
+        
+        /* --- FOOTER --- */
+        .footer { text-align: center; padding: 2rem 0; border-top: 2px solid var(--border-color); }
+        
+        /* --- MOBILE MENU & RESPONSIVE --- */
+        .mobile-menu-btn { display: none; }
+        .mobile-nav { position: fixed; top: 0; left: 100%; width: 100%; height: 100vh; background: var(--bg-color); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 999; transition: left 0.4s ease-in-out; }
+        .mobile-nav.is-active { left: 0; }
+        .mobile-nav .nav-links { flex-direction: column; text-align: center; font-size: 1.5rem; }
+        .hidden { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .show { opacity: 1; transform: translateY(0); }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; position: relative; width: 30px; height: 21px; z-index: 1001; cursor: pointer; }
+            .mobile-menu-btn .bar { position: absolute; width: 100%; height: 3px; background: var(--heading-color); transition: all 0.3s ease-in-out; }
+            .bar1 { top: 0; } .bar2 { top: 9px; } .bar3 { top: 18px; }
+            .mobile-menu-btn.is-active .bar1 { transform: translateY(9px) rotate(45deg); }
+            .mobile-menu-btn.is-active .bar2 { opacity: 0; }
+            .mobile-menu-btn.is-active .bar3 { transform: translateY(-9px) rotate(-45deg); }
+            .hero-content h1 { font-size: 1.8rem; }
+            .about-content { grid-template-columns: 1fr; text-align: center; }
+            .about-image { margin: 0 auto 2rem auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-content">
+            <div class="logo">VELEZ<span></span></div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu-btn">
+                <div class="bar bar1"></div> <div class="bar bar2"></div> <div class="bar bar3"></div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="mobile-nav">
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+
+    <section id="home" class="hero">
+        <div class="container hero-content hidden">
+            <p>Hello, I'm</p>
+            <h1>Ralph Velez<span>.</span></h1>
+            <p>Painting with pixels, building with code.</p>
+            
+            <div class="social-icons" style="margin: 2rem 0;">
+                <a href="https://www.facebook.com/RalphFuFu.Xstep" target="_blank" rel="noopener noreferrer" style="margin: 0 15px; text-decoration: none;"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0 0 3.603 0 8.049c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></svg></a>
+                <a href="https://github.com/RalphVelez18" target="_blank" rel="noopener noreferrer" style="margin: 0 15px; text-decoration: none;"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+                <a href="https://www.instagram.com/raruufuuuu/" target="_blank" rel="noopener noreferrer" style="margin: 0 15px; text-decoration: none;"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.282.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.843-.038 1.096-.047 3.232-.047h.001zm4.905 1.72c-.418 0-.757.34-.757.757s.34.757.757.757.757-.34.757-.757-.339-.757-.757-.757zM8 4.884c-1.74 0-3.125 1.385-3.125 3.126 0 1.74 1.385 3.125 3.125 3.125 1.74 0 3.125-1.385 3.125-3.125 0-1.741-1.385-3.126-3.125-3.126zM8 9.333c-.734 0-1.333-.6-1.333-1.333s.6-1.333 1.333-1.333 1.333.6 1.333 1.333-.6 1.333-1.333 1.333z"/></svg></a>
+                <a href="https://mail.google.com/mail/u/0/" style="margin: 0 15px; text-decoration: none;"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16"><path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/></svg></a>
+            </div>
+            <a href="#about" class="btn btn-primary">More About Me</a>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title hidden">My <span>Skills</span></h2>
+            <div class="about-content hidden">
+                <div class="about-image">
+                    <img src="https://scontent.filo1-1.fna.fbcdn.net/v/t39.30808-6/476211390_1340166457174326_2313029012285901890_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeGeHJjjPOdZdzL0Js_F06lw3eKlLG7P6Lrd4qUsbs_oug5Mi3-M8DgVZf2qnJX_Sk1xVtsIqfx9zuCSMP2Fltu4&_nc_ohc=tN9ssGtJ-RcQ7kNvwGMfJJb&_nc_oc=AdmoN83AEk9yWp9Xs2ytwFK4WH1nO4ZFBcMhnRJGAin8ApKCMHDp-4fwMM76q6vlY7g&_nc_zt=23&_nc_ht=scontent.filo1-1.fna&_nc_gid=BLTNuW4ZT6XbJmSuJkv3UQ&oh=00_AfXT6kvdK4Q3ef6YHy1GfQ-7Le5Wo17vJYuCMCIiwXQuiQ&oe=68A4FBC6">
+                </div>
+                <div class="about-text">
+                    <h3>[About me]</h3>
+                    <p>[I'm a developer who treats code like a craft. I meticulously build beautiful and functional web applications, blending the precision of logic with the passion of an artist.]</p>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                          <h3>Design</h3> 
+                          <div class="skill-tags"><span class="skill-tag">UI/UX</span> <span class="skill-tag">Figma</span> <span class="skill-tag">Photoshop</span></div>
+                        </div>
+                        <div class="skill-category">
+                          <h3>Development</h3> 
+                          <div class="skill-tags"><span class="skill-tag">HTML5</span> <span class="skill-tag">CSS3</span> <span class="skill-tag">JavaScript</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="section">
+        <div class="container">
+            <h2 class="section-title hidden">My <span>Education</span></h2>
+            <div class="education-grid hidden">
+                <div class="education-card">
+                    <p class="date">2014 - 2017</p>
+                    <h3>Elementary School</h3>
+                    <p>Bata-1 Elementary School</p>
+                </div>
+                <div class="education-card">
+                    <p class="date">2017 - 2022</p>
+                    <h3>High School</h3>
+                    <p>AMA Bacolod</p>
+                </div>
+                <div class="education-card">
+                    <p class="date">2022 - 2025</p>
+                    <h3>Bachelor's Degree</h3>
+                    <p>STI West Negros University, Bachelor of Science in Information Technology.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section">
+        <div class="container">
+            <h2 class="section-title hidden">My <span>Experience</span></h2>
+            <div class="experience-grid hidden">
+                <div class="experience-card">
+                    <h3>Frontend & Backend, App Developer</h3>
+                    <p class="date">Capstone Project (Developer) | 2024 - Present</p>
+                    <p class="description">Built a full management system for PWD services, including an admin website and a user registration app. Coded with HTML, CSS, and JavaScript.</p>
+                </div>
+                <div class="experience-card">
+                    <h3>Game Developer</h3>
+                    <p class="date">School Project | 2021 - Present</p>
+                    <p class="description">Coded two games from scratch: a text-based adventure in Java, and a 2D browser game using HTML, CSS, and JavaScript.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title hidden">Got someting to  <span>say</span> ?</h2>
+            <div class="contact-content card hidden">
+                <form class="contact-form">
+                    <div class="form-group"><input type="text" placeholder="Your Name" required></div>
+                    <div class="form-group"><input type="email" placeholder="Your Email" required></div>
+                    <div class="form-group"><textarea placeholder="Your Message" rows="5" required></textarea></div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2025 Ralph Velez. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) { entry.target.classList.add('show'); }
+                });
+            });
+            const hiddenElements = document.querySelectorAll('.hidden');
+            hiddenElements.forEach((el) => observer.observe(el));
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const mobileNav = document.querySelector('.mobile-nav');
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenuBtn.classList.toggle('is-active');
+                mobileNav.classList.toggle('is-active');
+            });
+            const navLinks = document.querySelectorAll('.mobile-nav .nav-links a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenuBtn.classList.remove('is-active');
+                    mobileNav.classList.remove('is-active');
+                });
+            });
+            document.querySelector('.contact-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your message! This is a demo form.');
+                this.reset();
+            });
+        });
+    </script>
+</body>
+</html>
